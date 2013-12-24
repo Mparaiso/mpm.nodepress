@@ -5,7 +5,6 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
   , flash = require('connect-flash') //@note @express flash messages
@@ -21,6 +20,7 @@ app.set('view engine', 'jade');
 app.use(express.cookieParser('my super cookie'));
 app.use(express.session({cookie:{maxAge:50000}}));
 app.use(flash());
+app.use('/post', routes.post);
 // add flash messages to locals
 app.use(function(req,res,next){
     app.locals.flash_messages ={
@@ -42,7 +42,6 @@ if ('development' === app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.use('/post', routes);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
