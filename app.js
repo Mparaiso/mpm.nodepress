@@ -14,22 +14,15 @@ var express = require('express')
 var app = express();
 // all environments
 app.set('port', process.env.PORT || 3000);
-app.set('views', __dirname + '/views');
+app.set('views', path.join(__dirname,'views'));
 app.set('view engine', 'jade');
 //@note @express configure flash messages
+//@note @express flash @see https://github.com/jaredhanson/connect-flash
 app.use(express.cookieParser('my super cookie'));
 app.use(express.session({cookie:{maxAge:50000}}));
 app.use(flash());
-app.use('/post', routes.post);
 // add flash messages to locals
-app.use(function(req,res,next){
-    app.locals.flash_messages ={
-        info:req.flash('info')||[],
-        success:req.flash('success')||[],
-        error:req.flash('error')||[]
-    };
-    next();
-});
+app.use(container.middleware.flash_messages);
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
@@ -40,9 +33,14 @@ app.locals(container.locals);
 // development only
 if ('development' === app.get('env')) {
   app.use(express.errorHandler());
+  app.locals.pretty=true;
 }
+//mount post routes
+app.use('/post', routes.post);
 
-
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
-});
+// if main, run server
+if(!module.parent)
+    http.createServer(app).listen(app.get('port'), function(){
+      console.log('Express server listening on port ' + app.get('port'));
+    });
+module.exports = app;

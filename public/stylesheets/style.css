@@ -1,6 +1,10 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /*padding: 50px;*/
+  font: 100% "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+.content{
+    margin:auto;
+    width:980px;
 }
 
 a {
@@ -22,7 +26,7 @@ input[type=text],textarea{
     border-collapse: collapse;
 }
 /* flash messages */
-ul.flash,ul.menu{
+ul.flash,ul.menu,ul.error{
     list-style: none;
     padding-left: 0;
 }
@@ -32,6 +36,12 @@ ul.flash,ul.menu{
 .flash-info{
     color: deepskyblue;
 }
-.flash-error{
+.flash-error,.error{
     color: red;
+}
+.main{
+   margin-bottom: 200px;
+}
+.inline{
+    display: inline;
 }

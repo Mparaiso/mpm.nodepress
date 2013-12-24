@@ -4,7 +4,9 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    h1= title
-    include includes/menu
-    include includes/flash-messages
-    block content
+    header.content: h1= title
+    section.content: include includes/menu
+    section.content: include includes/flash-messages
+    section.content: .errors: include includes/errors
+    section.content.main: block content
+    footer.content: .footer Copyright 2013 M.Paraiso

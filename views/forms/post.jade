@@ -1,15 +1,22 @@
 form(method='POST',name='post')
     div
-        label title
+        label Title
         input(type='text',name='postTitle',value=post.postTitle)
     hr
     div
-        label excerpt
+        label Excerpt
         textarea(name='postExcerpt',rows=3)=post.postExcerpt
     hr
     div
-        label content
+        label Content
         textarea(name='postContent',rows=10)=post.postContent
+    if post.postMeta
+        label Post Meta
+            for i in post.postMeta
+                div=i
+                div
+                    label=postMeta[i].key
+                    input(value=postMeta[i].value)
     div
         input(type='reset',value='reset',name='submit')
-        input(type='submit',value='create',name='submit')
+        input(type='submit',value='edit',name='submit')

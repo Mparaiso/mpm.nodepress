@@ -1,0 +1,6 @@
+if error
+    h4.error=error.message
+    if error.errors
+        ul.error
+            for err,key in error.errors
+                li.error=err.message

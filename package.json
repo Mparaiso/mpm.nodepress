@@ -13,7 +13,8 @@
     "underscore":"*",
     "async":"*",
     "pimple":"*",
-    "connect-flash":"0.1.1"
+    "connect-flash":"0.1.1",
+    "lorem":"*"
   },
   "devDependencies":{
     "chai":"*",
