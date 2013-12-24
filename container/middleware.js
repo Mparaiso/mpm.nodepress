@@ -13,5 +13,10 @@ module.exports={
             error:req.flash('error')||[]
         };
         next();
+    },
+    res_locals:function(req,res,next){
+        console.log(this);
+        res.locals(app.container.locals);
+        next();
     }
 };

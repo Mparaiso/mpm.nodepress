@@ -7,6 +7,7 @@ Development Notes(in french,sorry)
 + Lorem Ipsum,fake text : http://www.loremipsum.net/
 + connect middlewares : https://github.com/senchalabs/connect/wiki
 + express examples : https://github.com/visionmedia/express/tree/master/examples
++ express wiki : https://github.com/visionmedia/express/wiki
 
 ####MongoDB
 +   Orderby : http://docs.mongodb.org/manual/reference/operator/meta/orderby/
@@ -50,3 +51,15 @@ Development Notes(in french,sorry)
         lorem_i300x100 # 300x100 image
         */
     </code></pre>
++ express-debug: https://github.com/devoidfury/express-debug
+
+    <pre><code>
+    var express = require('express');
+    var app = express();
+
+    app.configure('development', function() {
+        var edt = require('express-debug');
+        edt(app, {/* settings */});
+    });
+    </code></pre>
+

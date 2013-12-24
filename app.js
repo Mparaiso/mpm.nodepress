@@ -12,6 +12,7 @@ var express = require('express')
   , container = require('./container');
 
 var app = express();
+app.container=container;
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname,'views'));
@@ -29,11 +30,13 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
-app.locals(container.locals);
+app.use(container.middleware.res_locals);
 // development only
 if ('development' === app.get('env')) {
   app.use(express.errorHandler());
   app.locals.pretty=true;
+  var edt = require('express-debug');
+  edt(app, {/* settings */});
 }
 //mount post routes
 app.use('/post', routes.post);

@@ -14,7 +14,8 @@
     "async":"*",
     "pimple":"*",
     "connect-flash":"0.1.1",
-    "lorem":"*"
+    "lorem":"*",
+    "express-debug":"*"
   },
   "devDependencies":{
     "chai":"*",
