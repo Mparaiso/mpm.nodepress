@@ -21,6 +21,15 @@ app.set('view engine', 'jade');
 app.use(express.cookieParser('my super cookie'));
 app.use(express.session({cookie:{maxAge:50000}}));
 app.use(flash());
+// add flash messages to locals
+app.use(function(req,res,next){
+    app.locals.flash_messages ={
+        info:req.flash('info')||[],
+        success:req.flash('success')||[],
+        error:req.flash('error')||[]
+    };
+    next();
+});
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());

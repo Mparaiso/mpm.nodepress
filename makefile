@@ -10,3 +10,4 @@ run:
 	@DEBUG=express:* supervisor app.js &
 install:
 	@npm install
+.PHONY: test

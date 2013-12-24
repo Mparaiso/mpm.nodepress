@@ -5,15 +5,7 @@ var container = require('../container')
 
 app = express();
 app.locals(container.locals);
-// add flash messages to locals
-app.use(function(req,res,next){
-    app.locals.flash_messages ={
-        info:req.flash('info')||[],
-        success:req.flash('success')||[],
-        error:req.flash('error')||[]
-    };
-    next();
-});
+
 app.param('post',function(req,res,next,id){
     Post.findOne(id,function(err,post){
         if(err)return next(err);
