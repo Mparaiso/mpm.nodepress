@@ -1,0 +1,9 @@
+extend ..\layout
+
+block content
+    if post
+        h2= post.postTitle
+        p= post.postExcerpt
+        p= post.postContent
+    else
+        h2 Post not found

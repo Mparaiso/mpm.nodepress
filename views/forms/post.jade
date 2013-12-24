@@ -1,0 +1,15 @@
+form(method='POST',name='post')
+    div
+        label title
+        input(type='text',name='postTitle',value=post.postTitle)
+    hr
+    div
+        label excerpt
+        textarea(name='postExcerpt',rows=3)=post.postExcerpt
+    hr
+    div
+        label content
+        textarea(name='postContent',rows=10)=post.postContent
+    div
+        input(type='reset',value='reset',name='submit')
+        input(type='submit',value='create',name='submit')

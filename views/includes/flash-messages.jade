@@ -1,0 +1,4 @@
+ul.flash
+    for messages,type in flash_messages
+        for message in messages
+            li(class='flash-'+type)= message

@@ -5,4 +5,33 @@ body {
 
 a {
   color: #00B7FF;
+  text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+}
+hr{
+    border:1px ;
+}
+label{
+    display:block;
+}
+input[type=text],textarea{
+    width:100%;
+    border:1px solid #555;
+    border-collapse: collapse;
+}
+/* flash messages */
+ul.flash,ul.menu{
+    list-style: none;
+    padding-left: 0;
+}
+.flash-success{
+    color: limegreen;
+}
+.flash-info{
+    color: deepskyblue;
+}
+.flash-error{
+    color: red;
 }
