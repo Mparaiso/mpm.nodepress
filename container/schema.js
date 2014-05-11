@@ -1,7 +1,10 @@
 /*global db*/
 var schema = exports;
 var mongoose = require('mongoose');
-
+schema.PostMeta=mongoose.Schema({
+    metaKey:{type:String,required:true},
+    metaValue:{type:mongoose.Schema.Types.Mixed,required:true}
+});
 schema.PostSchema = mongoose.Schema({
     postDate: {type: Date, default: Date.now,required:true},
     postDateGmt: {type: Date, default: Date.now,required:true},
@@ -24,7 +27,7 @@ schema.PostSchema = mongoose.Schema({
     postType: String,
     postMimeType: String,
     commentCount: Number,
-    postMeta: [Object]
+    postMetas: [schema.PostMeta]
 });
 
 schema.UserSchema = mongoose.Schema({

@@ -28,6 +28,10 @@ container.set('db', container.share(function db(container) {
     return db;
 }));
 container.set('post_model_defaults',{});
+//forms
+container.set('forms',container.share(function(){
+    return require('./forms');
+}));
 
 if (process.env.NODE_ENV === "development") {
     //https://github.com/shyiko/lorem
@@ -45,6 +49,10 @@ if (process.env.NODE_ENV === "development") {
             postContent:lorem.ipsum('p4')
         };
     });
+}
+
+if(process.env.NODE_ENV==='testing'){
+    container.set('db_uri', process.env.nodepress_mongodb_test);
 }
 
 module.exports = container;

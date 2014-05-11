@@ -13,6 +13,7 @@ Development Notes(in french,sorry)
 +   Orderby : http://docs.mongodb.org/manual/reference/operator/meta/orderby/
 
 ####Packages used:
++ supertest: https://github.com/visionmedia/supertest
 + connect-flash : https://github.com/jaredhanson/connect-flash
 
     <pre><code>

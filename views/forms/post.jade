@@ -10,13 +10,23 @@ form(method='POST',name='post')
     div
         label Content
         textarea(name='postContent',rows=10)=post.postContent
-    if post.postMeta
-        label Post Meta
-            for i in post.postMeta
-                div=i
-                div
-                    label=postMeta[i].key
-                    input(value=postMeta[i].value)
+    if post.postMetas
+        hr
+        label Post Metas
+            br
+            button#addMeta add meta
+            div#postMetas
+                for postMeta,i in post.postMetas
+                    div(data-index=i)
+                        label.inline key :
+                        input.inline(value=postMeta.metaKey,name="postMetas["+i+"][metaKey]")
+                        &nbsp;
+                        label.inline value :
+                        input.inline(value=postMeta.metaValue,name="postMetas["+i+"][metaValue]")
+                        button(data-index=i,class="button-remove") remove
+    hr
     div
         input(type='reset',value='reset',name='submit')
         input(type='submit',value='edit',name='submit')
+
+    //-include postmeta

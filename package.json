@@ -15,10 +15,12 @@
     "pimple":"*",
     "connect-flash":"0.1.1",
     "lorem":"*",
-    "express-debug":"*"
+    "express-debug":"*",
+    "mpm.form":"*"
   },
   "devDependencies":{
     "chai":"*",
-    "supertest":"*"
+    "supertest":"*",
+    "mocha":"*"
   }
 }

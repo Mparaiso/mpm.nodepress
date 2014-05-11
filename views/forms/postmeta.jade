@@ -1,0 +1,40 @@
+//-post meta template
+script#postMetaTemplate(type="text/x-template")
+    label.inline key :
+    input.inline(name="postMetas[%i][metaKey]")
+    &nbsp;
+    label.inline value :
+    input.inline(name="postMetas[%i][metaValue]")
+    button(data-index='%i',class="button-remove") remove
+//-post meta script
+script.
+    //create interactive postMeta form
+    var buttonClass='button-remove';
+    var $postMetas=document.querySelector('#postMetas');
+    var $addMetaButton=document.querySelector('#addMeta');
+    var template = document.querySelector('#postMetaTemplate').innerText;
+    var metaCount = $postMetas.children.length;
+    var getIndex=function(element){element.target.getAttribute('data-index');}
+    var removeElement=function(element){
+        if(element)element.parentElement.removeChild(element);
+    }
+    var addMeta=function(event){
+        var div=document.createElement('DIV');
+        metaCount+=1;
+        div.innerHTML=template.replace(/\%i/g,metaCount);
+        div.setAttribute('data-index',metaCount);
+        $postMetas.appendChild(div);
+        return false;
+    };
+    $addMetaButton.onclick=addMeta;
+    $postMetas.addEventListener('click',function(event){
+        var element = event.target;
+        if(element.className===buttonClass){
+             var div=document.querySelector('div[data-index="'+getIndex(element)+'"]');
+             removeElement(div);
+        }
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+    });
+

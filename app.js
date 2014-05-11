@@ -12,7 +12,11 @@ var express = require('express')
   , container = require('./container');
 
 var app = express();
-app.container=container;
+/**
+ * Dependency injection container
+ * @type {Pimple}
+ */
+app.c=app.container=container;
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname,'views'));
@@ -23,14 +27,14 @@ app.use(express.cookieParser('my super cookie'));
 app.use(express.session({cookie:{maxAge:50000}}));
 app.use(flash());
 // add flash messages to locals
-app.use(container.middleware.flash_messages);
+app.use(app.c.middleware.flash_messages);
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(container.middleware.res_locals);
+app.use(app.c.middleware.res_locals);
 // development only
 if ('development' === app.get('env')) {
   app.use(express.errorHandler());

@@ -1,12 +1,6 @@
 module.exports={
-    /**
-     * Expose flash messages
-     * @param req
-     * @param res
-     * @param next
-     */
+    // Expose flash messages
     flash_messages:function(req,res,next){
-        console.log('flash middleware executed');
         res.locals.flash_messages ={
             info:req.flash('info')||[],
             success:req.flash('success')||[],
@@ -14,9 +8,9 @@ module.exports={
         };
         next();
     },
+    //set response locals
     res_locals:function(req,res,next){
-        console.log(this);
-        res.locals(app.container.locals);
+        res.locals(req.app.container.locals);
         next();
     }
 };

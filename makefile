@@ -7,7 +7,8 @@ commit:
 push: commit
 	@git push origin --all
 run:
-	@DEBUG=express:* supervisor app.js &
+    #@DEBUG=express:* supervisor app.js &
+	@supervisor app.js &
 install:
 	@npm install
 .PHONY: test

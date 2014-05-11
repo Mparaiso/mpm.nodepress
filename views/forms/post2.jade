@@ -1,0 +1,10 @@
+//- form using mpm.form framework
+if form.hasError()
+    p.error This form has errors.
+    ul.error
+        for error in form.getErrors()
+            li=error.message+"."
+else if error
+    p.error= error.message
+
+form(method='POST',name=form.getName())!= form.toHTML()
