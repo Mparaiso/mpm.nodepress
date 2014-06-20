@@ -150,5 +150,5 @@ if(!module.parent){
         console.log('listening on port:'+$('port'));
     });
 }else{
-    module.export=$;
+    module.exports=$;
 }
