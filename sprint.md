@@ -1,4 +1,34 @@
+SPRINTS
+=======
+
+Sprint1
+-------
+
++ [ ] a user can create posts
++ [ ] a user can read posts
++ [ ] a user can delete posts
++ [ ] a user can update posts
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Development Notes(in french,sorry)
+
 ==================================
 
 @note @node @express

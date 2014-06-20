@@ -1,53 +1,25 @@
+/*jslint eqeq:true,node:true,es5:true,white:true,plusplus:true,nomen:true,unparam:true,devel:true,regexp:true */
+/*Copyright © 2014 mparaiso <mparaiso@online.fr>. All Rights Reserved.*/
+"use strict";
+var http,express,app,port,$;
 
-/**
- * Module dependencies.
- */
 
-var express = require('express')
-  , routes = require('./routes')
-  , http = require('http')
-  , path = require('path')
-  , flash = require('connect-flash') //@note @express flash messages
-  , mongoose = require('mongoose')
-  , container = require('./container');
-
-var app = express();
-/**
- * Dependency injection container
- * @type {Pimple}
- */
-app.c=app.container=container;
-// all environments
-app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname,'views'));
-app.set('view engine', 'jade');
-//@note @express configure flash messages
-//@note @express flash @see https://github.com/jaredhanson/connect-flash
-app.use(express.cookieParser('my super cookie'));
-app.use(express.session({cookie:{maxAge:50000}}));
-app.use(flash());
-// add flash messages to locals
-app.use(app.c.middleware.flash_messages);
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(app.c.middleware.res_locals);
-// development only
-if ('development' === app.get('env')) {
-  app.use(express.errorHandler());
-  app.locals.pretty=true;
-  var edt = require('express-debug');
-  edt(app, {/* settings */});
+express=require('express');
+http=require('http');
+app=express();
+port=process.env.PORT||3000;
+(function(g){
+    var modules = {};
+    g.$=function(){}
+}(this));
+app.get('/',function(req,res){
+    res.send('Hello World');
+});
+//export or start
+if(!module.parent){
+    http.createServer(app).listen(port,function(){
+        console.log('listening on port:'+port);
+    })
+}else{
+    module.export=app;
 }
-//mount post routes
-app.use('/post', routes.post);
-
-// if main, run server
-if(!module.parent)
-    http.createServer(app).listen(app.get('port'), function(){
-      console.log('Express server listening on port ' + app.get('port'));
-    });
-module.exports = app;

@@ -1,14 +1,12 @@
 test:
-	@mocha 
-	make commit
+	@npm test & 
+start:
+	@npm start &
 commit:
 	@git add .
-	@git commit -am"auto-commit `date`" || :
+	@git commit -am"${message} `date`" || :
 push: commit
-	@git push origin --all
-run:
-    #@DEBUG=express:* supervisor app.js &
-	@supervisor app.js &
+	@git push 
 install:
 	@npm install
 .PHONY: test
